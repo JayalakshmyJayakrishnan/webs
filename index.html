@@ -3,185 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyberpunk Jayalakshmy</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/lumos/1.0.0/lumos.css" rel="stylesheet">
+    <title>Jayalakshmy Jayakrishnan</title>
     <style>
         @font-face {
             font-family: 'SF Pixelate';
-            src: url('https://cdn.jsdelivr.net/gh/mkhoory/SF-Pixelate/SF-Pixelate-Bold.ttf') format('truetype');
+            src: url('https://your-font-source.com/sf-pixelate.woff2') format('woff2');
         }
 
         :root {
-            --primary: #00ffcc;
-            --background: #0a0a0a;
-            --accent: #ff00ff;
-            --text: #e5e5e5;
+            --primary: #ff00ff;
+            --background: #000000;
+            --accent: #ff33cc;
+            --text: #ffffff;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
         }
 
         body {
-            font-family: 'Lumos', 'Times New Roman', serif;
             background-color: var(--background);
             color: var(--text);
             overflow: hidden;
         }
 
-        .intro-screen {
+        .hearts-container {
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: var(--background);
-            position: relative;
-        }
-
-        .heart-grid {
-            display: flex;
-            gap: 1rem;
         }
 
         .heart {
-            font-size: 3rem;
+            width: 50px;
+            height: 50px;
+            margin: 10px;
+            background-color: #000;
+            clip-path: polygon(50% 0%, 100% 35%, 85% 100%, 50% 80%, 15% 100%, 0% 35%);
             cursor: pointer;
-            transition: transform 0.2s;
         }
 
-        .heart:hover {
-            transform: scale(1.2);
+        .heart.center {
+            background-color: #ffffff;
         }
 
-        .heart.white {
-            color: var(--primary);
-        }
-
-        .heart.black {
-            color: #333;
-        }
-
-        .terminal-screen {
+        .terminal {
             display: none;
-            height: 100vh;
-            background-color: #0a0a0a;
-            color: #00ffcc;
-            font-family: monospace;
-            font-size: 1.5rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .terminal-button {
-            color: var(--background);
-            background-color: var(--primary);
-            padding: 1rem 2rem;
-            border: none;
-            cursor: pointer;
-            font-family: monospace;
-            transition: background-color 0.3s;
-        }
-
-        .terminal-button:hover {
-            background-color: var(--accent);
-        }
-
-        .main-content {
-            display: none;
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            min-height: 100vh;
+            width: 80%;
+            height: 60%;
+            margin: 0 auto;
+            background-color: #000000;
+            border: 2px solid var(--accent);
+            box-shadow: 0 0 20px var(--primary);
+            padding: 20px;
             color: var(--text);
-            font-family: 'SF Pixelate';
+            font-family: 'Courier New', monospace;
+            overflow-y: auto;
+            border-radius: 10px;
+            position: absolute;
+            top: 20%;
+            left: 10%;
         }
 
-        header {
-            padding: 2rem;
+        .terminal.active {
+            display: block;
+        }
+
+        .terminal-input {
+            background: none;
+            border: none;
+            color: var(--accent);
+            font-size: 1.2rem;
+            outline: none;
+            width: 100%;
+        }
+
+        .interface {
+            display: none;
             text-align: center;
-            font-size: 2.5rem;
-            color: var(--primary);
+            padding: 2rem;
+        }
+
+        .interface.active {
+            display: block;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-family: 'SF Pixelate', sans-serif;
+            color: var(--accent);
+            margin-bottom: 1rem;
         }
 
         .section {
-            padding: 2rem;
-            text-align: center;
-            border: 2px solid var(--accent);
-            margin: 2rem auto;
-            width: 80%;
-            border-radius: 10px;
-            background-color: rgba(0, 0, 0, 0.7);
+            margin-top: 2rem;
         }
 
         .section h2 {
-            font-family: 'SF Pixelate';
-            color: var(--accent);
+            font-family: 'SF Pixelate', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
         }
 
-        .social-links a {
-            color: var(--primary);
-            text-decoration: none;
-            margin: 0 1rem;
-            border: 1px solid var(--primary);
-            padding: 0.5rem 1rem;
-            transition: background-color 0.3s;
-        }
-
-        .social-links a:hover {
-            background-color: var(--primary);
-            color: var(--background);
+        .section p {
+            font-size: 1.2rem;
         }
     </style>
 </head>
 <body>
-    <div class="intro-screen">
-        <div class="heart-grid">
-            <span class="heart black">&#9829;</span>
-            <span class="heart black">&#9829;</span>
-            <span class="heart white" id="white-heart">&#9829;</span>
-            <span class="heart black">&#9829;</span>
-            <span class="heart black">&#9829;</span>
-        </div>
+    <div class="hearts-container">
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart center" onclick="showTerminal()"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
     </div>
 
-    <div class="terminal-screen" id="terminal">
-        <button class="terminal-button" id="start-command">Start</button>
+    <div class="terminal" id="terminal">
+        <p>Welcome to the terminal. Please type 'START' to proceed.</p>
+        <input class="terminal-input" id="terminalInput" type="text" onkeydown="checkCommand(event)" />
     </div>
 
-    <div class="main-content" id="content">
-        <header>Cyberpunk Jayalakshmy</header>
-        <div class="section" id="about">
+    <div class="interface" id="interface">
+        <h1>Jayalakshmy Jayakrishnan</h1>
+        <div class="section">
             <h2>About</h2>
-            <p>Engineering student passionate about web development and building connections.</p>
+            <p>Engineering student at Adi Shankara Institute of Engineering and Technology, Kalady. Passionate about web development and building connections.</p>
         </div>
-        <div class="section" id="skills">
+        <div class="section">
             <h2>Skills</h2>
-            <p>Leadership, communication, event management, and web development.</p>
+            <p>Experienced in leadership, communication, event management, and coding.</p>
         </div>
-        <div class="section" id="highlight">
-            <h2>Highlight</h2>
-            <p>Won the idea-pitching competition on Cybersecurity with the 'Ideators' team!</p>
+        <div class="section">
+            <h2>Strengths</h2>
+            <p>Adaptable, collaborative, and highly motivated to learn and grow in the tech industry.</p>
         </div>
-        <div class="section" id="contact">
+        <div class="section">
             <h2>Connect</h2>
-            <div class="social-links">
-                <a href="https://www.linkedin.com/in/jayalakshmy-jayakrishnan-196285226" target="_blank">LinkedIn</a>
-                <a href="https://github.com/JayalakshmyJayakrishnan" target="_blank">GitHub</a>
-            </div>
+            <p><a href="https://www.linkedin.com/in/jayalakshmy-jayakrishnan-196285226" target="_blank">LinkedIn</a> | <a href="https://github.com/JayalakshmyJayakrishnan" target="_blank">GitHub</a></p>
         </div>
     </div>
 
     <script>
-        document.getElementById('white-heart').addEventListener('click', function() {
-            document.querySelector('.intro-screen').style.display = 'none';
-            document.getElementById('terminal').style.display = 'flex';
-        });
+        function showTerminal() {
+            document.querySelector('.hearts-container').style.display = 'none';
+            document.getElementById('terminal').classList.add('active');
+        }
 
-        document.getElementById('start-command').addEventListener('click', function() {
-            document.getElementById('terminal').style.display = 'none';
-            document.getElementById('content').style.display = 'block';
-        });
+        function checkCommand(event) {
+            if (event.key === 'Enter') {
+                const input = document.getElementById('terminalInput').value.trim().toUpperCase();
+                if (input === 'START') {
+                    document.getElementById('terminal').classList.remove('active');
+                    document.getElementById('interface').classList.add('active');
+                }
+            }
+        }
     </script>
 </body>
 </html>
