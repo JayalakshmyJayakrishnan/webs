@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyberpunk Jayalakshmy</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lumos/1.0.0/lumos.css" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'SF Pixelate';
+            src: url('https://cdn.jsdelivr.net/gh/mkhoory/SF-Pixelate/SF-Pixelate-Bold.ttf') format('truetype');
+        }
+
+        :root {
+            --primary: #00ffcc;
+            --background: #0a0a0a;
+            --accent: #ff00ff;
+            --text: #e5e5e5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lumos', 'Times New Roman', serif;
+            background-color: var(--background);
+            color: var(--text);
+            overflow: hidden;
+        }
+
+        .intro-screen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: var(--background);
+            position: relative;
+        }
+
+        .heart-grid {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .heart {
+            font-size: 3rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .heart:hover {
+            transform: scale(1.2);
+        }
+
+        .heart.white {
+            color: var(--primary);
+        }
+
+        .heart.black {
+            color: #333;
+        }
+
+        .terminal-screen {
+            display: none;
+            height: 100vh;
+            background-color: #0a0a0a;
+            color: #00ffcc;
+            font-family: monospace;
+            font-size: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .terminal-button {
+            color: var(--background);
+            background-color: var(--primary);
+            padding: 1rem 2rem;
+            border: none;
+            cursor: pointer;
+            font-family: monospace;
+            transition: background-color 0.3s;
+        }
+
+        .terminal-button:hover {
+            background-color: var(--accent);
+        }
+
+        .main-content {
+            display: none;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            min-height: 100vh;
+            color: var(--text);
+            font-family: 'SF Pixelate';
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+
+        .section {
+            padding: 2rem;
+            text-align: center;
+            border: 2px solid var(--accent);
+            margin: 2rem auto;
+            width: 80%;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .section h2 {
+            font-family: 'SF Pixelate';
+            color: var(--accent);
+        }
+
+        .social-links a {
+            color: var(--primary);
+            text-decoration: none;
+            margin: 0 1rem;
+            border: 1px solid var(--primary);
+            padding: 0.5rem 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+            color: var(--background);
+        }
+    </style>
+</head>
+<body>
+    <div class="intro-screen">
+        <div class="heart-grid">
+            <span class="heart black">&#9829;</span>
+            <span class="heart black">&#9829;</span>
+            <span class="heart white" id="white-heart">&#9829;</span>
+            <span class="heart black">&#9829;</span>
+            <span class="heart black">&#9829;</span>
+        </div>
+    </div>
+
+    <div class="terminal-screen" id="terminal">
+        <button class="terminal-button" id="start-command">Start</button>
+    </div>
+
+    <div class="main-content" id="content">
+        <header>Cyberpunk Jayalakshmy</header>
+        <div class="section" id="about">
+            <h2>About</h2>
+            <p>Engineering student passionate about web development and building connections.</p>
+        </div>
+        <div class="section" id="skills">
+            <h2>Skills</h2>
+            <p>Leadership, communication, event management, and web development.</p>
+        </div>
+        <div class="section" id="highlight">
+            <h2>Highlight</h2>
+            <p>Won the idea-pitching competition on Cybersecurity with the 'Ideators' team!</p>
+        </div>
+        <div class="section" id="contact">
+            <h2>Connect</h2>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/jayalakshmy-jayakrishnan-196285226" target="_blank">LinkedIn</a>
+                <a href="https://github.com/JayalakshmyJayakrishnan" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('white-heart').addEventListener('click', function() {
+            document.querySelector('.intro-screen').style.display = 'none';
+            document.getElementById('terminal').style.display = 'flex';
+        });
+
+        document.getElementById('start-command').addEventListener('click', function() {
+            document.getElementById('terminal').style.display = 'none';
+            document.getElementById('content').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
